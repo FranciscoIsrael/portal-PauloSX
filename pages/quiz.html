@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Educação Sexual</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .quiz-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .quiz-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header p {
+            opacity: 0.9;
+            font-size: 1.125rem;
+        }
+
+        .quiz-progress {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            margin-right: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .quiz-timer {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+
+        .question-container {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            border-color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .option.selected {
+            border-color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 1rem;
+            width: auto;
+        }
+
+        .option label {
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quiz-results {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h2 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .score-display {
+            display: inline-block;
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .score-display.excellent {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+        }
+
+        .score-display.good {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .score-display.fair {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .score-display.poor {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .score-label {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .results-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+        }
+
+        .summary-item i {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+        }
+
+        .detailed-results {
+            margin-bottom: 2rem;
+        }
+
+        .detailed-results h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .result-item {
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--border-color);
+        }
+
+        .result-item.correct {
+            border-left-color: var(--accent-color);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .result-item.incorrect {
+            border-left-color: #ef4444;
+            background: rgba(239, 68, 68, 0.05);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-number {
+            background: var(--primary-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .result-header i {
+            font-size: 1.25rem;
+        }
+
+        .result-header i.fa-check {
+            color: var(--accent-color);
+        }
+
+        .result-header i.fa-times {
+            color: #ef4444;
+        }
+
+        .result-content h4 {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .answer-comparison {
+            margin-bottom: 1rem;
+        }
+
+        .user-answer,
+        .correct-answer {
+            padding: 0.75rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 0.5rem;
+        }
+
+        .user-answer {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .correct-answer {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .explanation {
+            background: var(--surface-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--primary-color);
+            color: var(--text-secondary);
+        }
+
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 1rem;
+            }
+
+            .quiz-header {
+                padding: 1.5rem;
+            }
+
+            .quiz-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .question-container {
+                padding: 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.125rem;
+            }
+
+            .quiz-navigation {
+                flex-direction: column;
+            }
+
+            .quiz-navigation .btn {
+                width: 100%;
+            }
+
+            .results-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .results-actions {
+                flex-direction: column;
+            }
+
+            .results-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo.svg" alt="Logo">
+            </div>
+            <div class="nav-title">
+                <h1>Educação Sexual</h1>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="quiz.html" class="active"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                <li><a href="crossword.html"><i class="fas fa-puzzle-piece"></i> Cruzada</a></li>
+                <li><a href="acrostic.html"><i class="fas fa-pen"></i> Acróstico</a></li>
+                <li><a href="wordsearch.html"><i class="fas fa-search"></i> Caça Palavras</a></li>
+                <li><a href="charts.html"><i class="fas fa-chart-pie"></i> Gráfico</a></li>
+                <li><a href="references.html"><i class="fas fa-book"></i> Referência</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h1>Quiz de Educação Sexual</h1>
+                <p>Teste seus conhecimentos sobre educação sexual com 11 perguntas cuidadosamente elaboradas</p>
+            </div>
+
+            <div id="quiz-container">
+                <!-- Quiz content will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/quiz.js"></script>
+</body>
+</html>

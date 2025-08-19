@@ -1,0 +1,324 @@
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .nav-title h1 {
+        font-size: 1.25rem;
+    }
+    
+    .sidebar {
+        width: 220px;
+    }
+    
+    .main-content {
+        margin-left: 220px;
+    }
+    
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .slide-content h2 {
+        font-size: 2rem;
+    }
+    
+    .slide-content p {
+        font-size: 1.125rem;
+    }
+    
+    .slide-image i {
+        font-size: 6rem;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+    
+    .nav-title h1 {
+        font-size: 1.125rem;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .main-content.sidebar-open {
+        transform: translateX(280px);
+    }
+    
+    .carousel {
+        height: 300px;
+    }
+    
+    .carousel-slide {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .slide-content {
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .slide-content h2 {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .slide-content p {
+        font-size: 1rem;
+    }
+    
+    .slide-image {
+        margin-left: 0;
+    }
+    
+    .slide-image i {
+        font-size: 4rem;
+    }
+    
+    .carousel-controls {
+        padding: 0 0.5rem;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .content-card {
+        padding: 1.5rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .game-card {
+        padding: 1.5rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Content spacing adjustments */
+    .content-section,
+    .games-preview {
+        padding: 2rem 0;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 0.75rem;
+    }
+    
+    .nav-title h1 {
+        font-size: 1rem;
+    }
+    
+    .sidebar {
+        width: 100%;
+    }
+    
+    .main-content.sidebar-open {
+        transform: translateX(0);
+    }
+    
+    .carousel {
+        height: 250px;
+    }
+    
+    .carousel-slide {
+        padding: 1rem;
+    }
+    
+    .slide-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .slide-content p {
+        font-size: 0.9rem;
+    }
+    
+    .slide-image i {
+        font-size: 3rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .content-card {
+        padding: 1.25rem;
+    }
+    
+    .content-card h3 {
+        font-size: 1.25rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-card {
+        padding: 1.25rem;
+    }
+    
+    .game-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .game-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .carousel-indicators {
+        margin-top: 1rem;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Landscape Orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    .carousel {
+        height: 200px;
+    }
+    
+    .carousel-slide {
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .slide-content {
+        max-width: 65%;
+    }
+    
+    .slide-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .slide-image i {
+        font-size: 3rem;
+    }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+    .nav-logo img,
+    .card-icon,
+    .game-icon {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .sidebar,
+    .carousel-controls,
+    .carousel-indicators,
+    .game-link,
+    .footer {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        margin-top: 0;
+    }
+    
+    .carousel-slide {
+        position: static;
+        opacity: 1;
+        transform: none;
+        page-break-inside: avoid;
+    }
+    
+    .content-card,
+    .game-card {
+        page-break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+    
+    .section-title {
+        page-break-after: avoid;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .carousel-slide {
+        transition: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0f172a;
+        --surface-color: #1e293b;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-light: #64748b;
+        --border-color: #334155;
+    }
+    
+    .navbar,
+    .sidebar,
+    .content-card,
+    .game-card {
+        background: var(--surface-color);
+        border-color: var(--border-color);
+    }
+    
+    .games-preview {
+        background: var(--surface-color);
+    }
+    
+    .game-card {
+        background: var(--background-color);
+    }
+}

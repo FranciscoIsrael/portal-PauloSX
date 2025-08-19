@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educação Sexual - Portal Educativo</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="Logo">
+            </div>
+            <div class="nav-title">
+                <h1>Educação Sexual</h1>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="pages/quiz.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                <li><a href="pages/crossword.html"><i class="fas fa-puzzle-piece"></i> Cruzada</a></li>
+                <li><a href="pages/acrostic.html"><i class="fas fa-pen"></i> Acróstico</a></li>
+                <li><a href="pages/wordsearch.html"><i class="fas fa-search"></i> Caça Palavras</a></li>
+                <li><a href="pages/charts.html"><i class="fas fa-chart-pie"></i> Gráfico</a></li>
+                <li><a href="pages/references.html"><i class="fas fa-book"></i> Referência</a></li>
+                <li><a href="pages/settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section with Carousel -->
+        <section class="hero">
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <div class="carousel-slide active">
+                        <div class="slide-content">
+                            <h2>Educação Sexual: Conhecimento é Poder</h2>
+                            <p>Informações científicas e educativas sobre sexualidade humana</p>
+                        </div>
+                        <div class="slide-image">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h2>Saúde e Bem-estar</h2>
+                            <p>Promovendo a saúde sexual e reprodutiva através da educação</p>
+                        </div>
+                        <div class="slide-image">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <h2>Prevenção e Cuidado</h2>
+                            <p>Informações sobre prevenção e cuidados com a saúde sexual</p>
+                        </div>
+                        <div class="slide-image">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="carousel-indicators" id="indicators"></div>
+            </div>
+        </section>
+
+        <!-- Educational Content -->
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Documentação sobre Educação Sexual</h2>
+                
+                <div class="content-grid">
+                    <article class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Desenvolvimento Sexual</h3>
+                        <p>A sexualidade é um aspecto natural e fundamental da experiência humana, envolvendo aspectos biológicos, psicológicos e sociais. O desenvolvimento sexual ocorre ao longo de toda a vida, desde a infância até a idade adulta, sendo importante compreender as diferentes fases e suas características.</p>
+                        <div class="content-details">
+                            <h4>Fases do Desenvolvimento:</h4>
+                            <ul>
+                                <li><strong>Infância:</strong> Descoberta do próprio corpo e curiosidade natural</li>
+                                <li><strong>Adolescência:</strong> Mudanças hormonais e desenvolvimento da identidade sexual</li>
+                                <li><strong>Juventude:</strong> Estabelecimento de relacionamentos íntimos</li>
+                                <li><strong>Idade Adulta:</strong> Maturidade sexual e responsabilidade</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3>Anatomia e Fisiologia</h3>
+                        <p>O conhecimento sobre a anatomia e fisiologia dos sistemas reprodutivos é fundamental para uma educação sexual completa. Compreender o funcionamento do corpo humano promove o autocuidado e a saúde sexual.</p>
+                        <div class="content-details">
+                            <h4>Sistema Reprodutivo Masculino:</h4>
+                            <ul>
+                                <li>Testículos: produção de espermatozoides e hormônios</li>
+                                <li>Pênis: órgão de cópula e eliminação</li>
+                                <li>Próstata: glândula acessória importante</li>
+                            </ul>
+                            <h4>Sistema Reprodutivo Feminino:</h4>
+                            <ul>
+                                <li>Ovários: produção de óvulos e hormônios</li>
+                                <li>Útero: órgão da gestação</li>
+                                <li>Vagina: canal do parto e órgão de cópula</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <h3>Prevenção e Saúde</h3>
+                        <p>A prevenção é fundamental na educação sexual. Conhecer métodos contraceptivos, prevenção de ISTs (Infecções Sexualmente Transmissíveis) e práticas de sexo seguro são essenciais para uma vida sexual saudável.</p>
+                        <div class="content-details">
+                            <h4>Métodos Contraceptivos:</h4>
+                            <ul>
+                                <li><strong>Preservativos:</strong> Proteção dupla contra gravidez e ISTs</li>
+                                <li><strong>Pílula Anticoncepcional:</strong> Controle hormonal da ovulação</li>
+                                <li><strong>DIU:</strong> Dispositivo intrauterino de longa duração</li>
+                                <li><strong>Implante:</strong> Liberação hormonal subcutânea</li>
+                            </ul>
+                            <h4>Prevenção de ISTs:</h4>
+                            <ul>
+                                <li>Uso consistente de preservativos</li>
+                                <li>Testes regulares de saúde</li>
+                                <li>Vacinação (HPV, Hepatite B)</li>
+                                <li>Comunicação aberta com parceiros</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Relacionamentos Saudáveis</h3>
+                        <p>Relacionamentos saudáveis são baseados em respeito mútuo, comunicação efetiva e consentimento. É importante compreender os aspectos emocionais da sexualidade e como construir vínculos afetivos saudáveis.</p>
+                        <div class="content-details">
+                            <h4>Características de Relacionamentos Saudáveis:</h4>
+                            <ul>
+                                <li><strong>Respeito:</strong> Valorização das diferenças e limites</li>
+                                <li><strong>Comunicação:</strong> Diálogo aberto sobre sentimentos e necessidades</li>
+                                <li><strong>Consentimento:</strong> Acordo mútuo e consciente</li>
+                                <li><strong>Confiança:</strong> Base sólida para intimidade</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>Direitos Sexuais e Reprodutivos</h3>
+                        <p>Os direitos sexuais e reprodutivos são direitos humanos fundamentais que garantem a autonomia, liberdade e dignidade de todas as pessoas em relação à sua sexualidade e reprodução.</p>
+                        <div class="content-details">
+                            <h4>Direitos Fundamentais:</h4>
+                            <ul>
+                                <li>Direito à informação e educação sexual</li>
+                                <li>Direito à saúde sexual e reprodutiva</li>
+                                <li>Direito à autonomia e escolha</li>
+                                <li>Direito à não discriminação</li>
+                                <li>Direito à privacidade e confidencialidade</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="content-card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Diversidade e Inclusão</h3>
+                        <p>A educação sexual deve ser inclusiva e respeitar a diversidade de orientações sexuais, identidades de gênero e expressões da sexualidade humana. O respeito à diversidade é fundamental para uma sociedade mais justa e igualitária.</p>
+                        <div class="content-details">
+                            <h4>Aspectos da Diversidade:</h4>
+                            <ul>
+                                <li><strong>Orientação Sexual:</strong> Heterossexualidade, homossexualidade, bissexualidade</li>
+                                <li><strong>Identidade de Gênero:</strong> Cisgeneridade, transgeneridade</li>
+                                <li><strong>Expressão de Gênero:</strong> Formas de expressar a identidade</li>
+                                <li><strong>Intersexualidade:</strong> Variações no desenvolvimento sexual</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Games Preview -->
+        <section class="games-preview">
+            <div class="container">
+                <h2 class="section-title">Jogos Educativos</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3>Quiz Educativo</h3>
+                        <p>Teste seus conhecimentos com 11 perguntas sobre educação sexual</p>
+                        <a href="pages/quiz.html" class="game-link">Jogar Agora</a>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>Palavras Cruzadas</h3>
+                        <p>Complete as palavras cruzadas com termos da educação sexual</p>
+                        <a href="pages/crossword.html" class="game-link">Jogar Agora</a>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <h3>Acróstico</h3>
+                        <p>Crie acrósticos criativos sobre educação sexual</p>
+                        <a href="pages/acrostic.html" class="game-link">Jogar Agora</a>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Caça Palavras</h3>
+                        <p>Encontre palavras relacionadas à educação sexual</p>
+                        <a href="pages/wordsearch.html" class="game-link">Jogar Agora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Educação Sexual</h3>
+                    <p>Portal educativo dedicado à promoção da educação sexual de qualidade através de conteúdo científico e jogos interativos.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Úteis</h3>
+                    <ul>
+                        <li><a href="pages/references.html">Referências</a></li>
+                        <li><a href="pages/settings.html">Configurações</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Educação Sexual Portal. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

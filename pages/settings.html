@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Educação Sexual</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .settings-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .settings-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .settings-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-header p {
+            opacity: 0.9;
+            font-size: 1.125rem;
+        }
+
+        .settings-content {
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        .settings-tabs {
+            display: flex;
+            background: var(--background-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tab-button.active {
+            background: var(--surface-color);
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: rgba(99, 102, 241, 0.05);
+            color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .settings-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .section-icon i {
+            font-size: 1rem;
+            color: white;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .setting-item {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .setting-item:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .setting-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .setting-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .setting-control {
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: var(--text-light);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toggle-switch.active {
+            background: var(--primary-color);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(24px);
+        }
+
+        .select-control,
+        .input-control {
+            min-width: 150px;
+        }
+
+        .select-control select,
+        .input-control input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background: var(--surface-color);
+            color: var(--text-primary);
+        }
+
+        .range-control {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-width: 200px;
+        }
+
+        .range-input {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .range-input::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .range-value {
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .actions-section {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .data-management {
+            margin-top: 2rem;
+        }
+
+        .data-stats {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .danger-zone {
+            background: rgba(239, 68, 68, 0.05);
+            border: 2px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+        }
+
+        .danger-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .danger-header i {
+            color: #dc2626;
+            font-size: 1.25rem;
+        }
+
+        .danger-header h3 {
+            color: #dc2626;
+            font-size: 1.125rem;
+            margin: 0;
+        }
+
+        .danger-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-input-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .file-input-label:hover {
+            background: #d97706;
+        }
+
+        .import-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            display: none;
+        }
+
+        .import-result.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-color);
+        }
+
+        .import-result.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #dc2626;
+        }
+
+        .about-section {
+            text-align: center;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .app-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-logo i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .app-version {
+            background: var(--background-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin: 1.5rem 0;
+        }
+
+        .version-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .settings-container {
+                padding: 1rem;
+            }
+
+            .settings-header {
+                padding: 1.5rem;
+            }
+
+            .settings-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .settings-tabs {
+                flex-direction: column;
+            }
+
+            .tab-content {
+                padding: 1.5rem;
+            }
+
+            .setting-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .setting-control {
+                margin-left: 0;
+            }
+
+            .actions-section {
+                flex-direction: column;
+            }
+
+            .actions-section .btn {
+                width: 100%;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .danger-actions {
+                flex-direction: column;
+            }
+
+            .danger-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo.svg" alt="Logo">
+            </div>
+            <div class="nav-title">
+                <h1>Educação Sexual</h1>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                <li><a href="crossword.html"><i class="fas fa-puzzle-piece"></i> Cruzada</a></li>
+                <li><a href="acrostic.html"><i class="fas fa-pen"></i> Acróstico</a></li>
+                <li><a href="wordsearch.html"><i class="fas fa-search"></i> Caça Palavras</a></li>
+                <li><a href="charts.html"><i class="fas fa-chart-pie"></i> Gráfico</a></li>
+                <li><a href="references.html"><i class="fas fa-book"></i> Referência</a></li>
+                <li><a href="settings.html" class="active"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h1>Configurações</h1>
+                <p>Personalize sua experiência educativa</p>
+            </div>
+
+            <div class="settings-content">
+                <div class="settings-tabs">
+                    <button class="tab-button active" data-tab="appearance">
+                        <i class="fas fa-palette"></i>
+                        Aparência
+                    </button>
+                    <button class="tab-button" data-tab="accessibility">
+                        <i class="fas fa-universal-access"></i>
+                        Acessibilidade
+                    </button>
+                    <button class="tab-button" data-tab="privacy">
+                        <i class="fas fa-shield-alt"></i>
+                        Privacidade
+                    </button>
+                    <button class="tab-button" data-tab="data">
+                        <i class="fas fa-database"></i>
+                        Dados
+                    </button>
+                    <button class="tab-button" data-tab="about">
+                        <i class="fas fa-info-circle"></i>
+                        Sobre
+                    </button>
+                </div>
+
+                <!-- Appearance Tab -->
+                <div class="tab-content active" id="appearance-tab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h2 class="section-title">Personalização Visual</h2>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Tema da Interface</div>
+                                    <div class="setting-description">
+                                        Escolha entre tema claro ou escuro para melhor conforto visual
+                                    </div>
+                                </div>
+                                <div class="setting-control select-control">
+                                    <select id="theme-select">
+                                        <option value="light">Claro</option>
+                                        <option value="dark">Escuro</option>
+                                        <option value="auto">Automático</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Tamanho da Fonte</div>
+                                    <div class="setting-description">
+                                        Ajuste o tamanho do texto para melhor legibilidade
+                                    </div>
+                                </div>
+                                <div class="setting-control range-control">
+                                    <input type="range" id="font-size-range" class="range-input" min="12" max="20" value="16" step="1">
+                                    <div class="range-labels">
+                                        <span>Pequena</span>
+                                        <span>Grande</span>
+                                    </div>
+                                    <div class="range-value" id="font-size-value">16px</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Animações</div>
+                                    <div class="setting-description">
+                                        Ativar ou desativar animações e transições na interface
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch" id="animations-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessibility Tab -->
+                <div class="tab-content" id="accessibility-tab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h2 class="section-title">Acessibilidade Visual</h2>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Alto Contraste</div>
+                                    <div class="setting-description">
+                                        Aumenta o contraste entre texto e fundo para melhor visibilidade
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch" id="high-contrast-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Movimento Reduzido</div>
+                                    <div class="setting-description">
+                                        Desativa animações e movimentos que podem causar desconforto
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch" id="reduced-motion-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Sons da Interface</div>
+                                    <div class="setting-description">
+                                        Feedback sonoro para ações e notificações
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch active" id="sounds-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h2 class="section-title">Jogos e Interação</h2>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Nível de Dificuldade Padrão</div>
+                                    <div class="setting-description">
+                                        Define o nível inicial dos jogos educativos
+                                    </div>
+                                </div>
+                                <div class="setting-control select-control">
+                                    <select id="difficulty-select">
+                                        <option value="easy">Fácil</option>
+                                        <option value="medium" selected>Médio</option>
+                                        <option value="hard">Difícil</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Tempo Limite dos Jogos</div>
+                                    <div class="setting-description">
+                                        Habilita ou desabilita limites de tempo nos jogos
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch active" id="timer-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy Tab -->
+                <div class="tab-content" id="privacy-tab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h2 class="section-title">Privacidade e Dados</h2>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Armazenamento Local</div>
+                                    <div class="setting-description">
+                                        Permite salvar progresso e configurações no seu dispositivo
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch active" id="local-storage-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Compartilhamento de Resultados</div>
+                                    <div class="setting-description">
+                                        Permite compartilhar resultados dos jogos e quizzes
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch active" id="sharing-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Lembrar Nome do Jogador</div>
+                                    <div class="setting-description">
+                                        Salva automaticamente o nome usado nos jogos
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="toggle-switch active" id="remember-name-toggle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <h2 class="section-title">Informações de Privacidade</h2>
+                        </div>
+
+                        <div class="setting-item">
+                            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6;">
+                                <strong>Política de Privacidade:</strong><br>
+                                Este aplicativo funciona completamente offline e não coleta dados pessoais. 
+                                Todas as informações são armazenadas localmente no seu dispositivo e nunca são 
+                                enviadas para servidores externos. Seus dados de progresso e configurações 
+                                permanecem privados e sob seu controle.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Tab -->
+                <div class="tab-content" id="data-tab">
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h2 class="section-title">Estatísticas de Uso</h2>
+                        </div>
+
+                        <div class="data-stats">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-quizzes">0</span>
+                                    <div class="stat-label">Quizzes</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-crosswords">0</span>
+                                    <div class="stat-label">Cruzadas</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-wordsearches">0</span>
+                                    <div class="stat-label">Caça Palavras</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-acrostics">0</span>
+                                    <div class="stat-label">Acrósticos</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-storage">0 KB</span>
+                                    <div class="stat-label">Armazenamento</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-management">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h2 class="section-title">Backup e Restauração</h2>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Exportar Dados</div>
+                                    <div class="setting-description">
+                                        Baixe todos os seus dados em formato JSON para backup
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <button class="btn btn-secondary" id="export-data-btn">
+                                        <i class="fas fa-download"></i>
+                                        Exportar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <div class="setting-info">
+                                    <div class="setting-title">Importar Dados</div>
+                                    <div class="setting-description">
+                                        Restaure seus dados a partir de um arquivo de backup
+                                    </div>
+                                </div>
+                                <div class="setting-control">
+                                    <div class="file-input-wrapper">
+                                        <input type="file" id="import-file" accept=".json">
+                                        <label for="import-file" class="file-input-label">
+                                            <i class="fas fa-upload"></i>
+                                            Importar
+                                        </label>
+                                    </div>
+                                    <div class="import-result" id="import-result"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="danger-zone">
+                        <div class="danger-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Zona de Perigo</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            Estas ações são irreversíveis e podem resultar na perda de dados.
+                        </p>
+                        <div class="danger-actions">
+                            <button class="btn-danger" id="clear-progress-btn">
+                                <i class="fas fa-eraser"></i>
+                                Limpar Progresso
+                            </button>
+                            <button class="btn-danger" id="reset-settings-btn">
+                                <i class="fas fa-undo"></i>
+                                Resetar Configurações
+                            </button>
+                            <button class="btn-danger" id="clear-all-data-btn">
+                                <i class="fas fa-trash-alt"></i>
+                                Apagar Todos os Dados
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Tab -->
+                <div class="tab-content" id="about-tab">
+                    <div class="about-section">
+                        <div class="app-logo">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        
+                        <h2>Portal Educativo Educação Sexual</h2>
+                        
+                        <div class="app-version">
+                            <div class="version-info">
+                                <strong>Versão:</strong>
+                                <span>1.0.0</span>
+                            </div>
+                            <div class="version-info">
+                                <strong>Última Atualização:</strong>
+                                <span>2024</span>
+                            </div>
+                        </div>
+
+                        <p>
+                            Uma plataforma educativa interativa dedicada à promoção da educação sexual de qualidade 
+                            através de conteúdo científico e jogos educativos. Desenvolvida com foco na acessibilidade, 
+                            usabilidade e privacidade do usuário.
+                        </p>
+
+                        <h3>Características Principais:</h3>
+                        <ul style="text-align: left; max-width: 400px; margin: 1.5rem auto;">
+                            <li>Conteúdo educativo baseado em evidências científicas</li>
+                            <li>Jogos interativos e quizzes educativos</li>
+                            <li>Interface responsiva e acessível</li>
+                            <li>Funcionamento 100% offline</li>
+                            <li>Dados armazenados localmente</li>
+                            <li>Sem coleta de dados pessoais</li>
+                        </ul>
+
+                        <h3>Tecnologias Utilizadas:</h3>
+                        <p style="font-family: monospace; background: var(--background-color); padding: 1rem; border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+                            HTML5 • CSS3 • JavaScript ES6+ • Chart.js • Font Awesome
+                        </p>
+
+                        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-light);">
+                            Este projeto tem finalidade educativa e foi desenvolvido seguindo as melhores práticas 
+                            de desenvolvimento web e diretrizes de acessibilidade.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="actions-section">
+                    <button class="btn btn-primary" id="save-settings">
+                        <i class="fas fa-save"></i>
+                        Salvar Configurações
+                    </button>
+                    <button class="btn btn-secondary" id="reset-settings">
+                        <i class="fas fa-undo"></i>
+                        Restaurar Padrões
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Settings page functionality
+        class SettingsManager {
+            constructor() {
+                this.settings = StorageManager.getSettings();
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.loadSettings();
+                this.updateStats();
+            }
+
+            bindEvents() {
+                // Tab switching
+                document.querySelectorAll('.tab-button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        this.switchTab(e.target.dataset.tab);
+                    });
+                });
+
+                // Setting controls
+                document.getElementById('theme-select').addEventListener('change', (e) => {
+                    this.updateSetting('theme', e.target.value);
+                });
+
+                document.getElementById('font-size-range').addEventListener('input', (e) => {
+                    const value = e.target.value + 'px';
+                    document.getElementById('font-size-value').textContent = value;
+                    this.updateSetting('fontSize', value);
+                    this.applyFontSize(value);
+                });
+
+                // Toggle switches
+                this.bindToggle('animations-toggle', 'animations');
+                this.bindToggle('high-contrast-toggle', 'highContrast');
+                this.bindToggle('reduced-motion-toggle', 'reducedMotion');
+                this.bindToggle('sounds-toggle', 'soundEnabled');
+                this.bindToggle('local-storage-toggle', 'localStorage');
+                this.bindToggle('sharing-toggle', 'sharing');
+                this.bindToggle('remember-name-toggle', 'rememberName');
+                this.bindToggle('timer-toggle', 'timerEnabled');
+
+                // Difficulty select
+                document.getElementById('difficulty-select').addEventListener('change', (e) => {
+                    this.updateSetting('difficulty', e.target.value);
+                });
+
+                // Data management
+                document.getElementById('export-data-btn').addEventListener('click', () => {
+                    this.exportData();
+                });
+
+                document.getElementById('import-file').addEventListener('change', (e) => {
+                    this.importData(e.target.files[0]);
+                });
+
+                // Danger zone actions
+                document.getElementById('clear-progress-btn').addEventListener('click', () => {
+                    this.clearProgress();
+                });
+
+                document.getElementById('reset-settings-btn').addEventListener('click', () => {
+                    this.resetSettings();
+                });
+
+                document.getElementById('clear-all-data-btn').addEventListener('click', () => {
+                    this.clearAllData();
+                });
+
+                // Save and reset buttons
+                document.getElementById('save-settings').addEventListener('click', () => {
+                    this.saveSettings();
+                });
+
+                document.getElementById('reset-settings').addEventListener('click', () => {
+                    this.resetToDefaults();
+                });
+            }
+
+            switchTab(tabId) {
+                // Update tab buttons
+                document.querySelectorAll('.tab-button').forEach(button => {
+                    button.classList.remove('active');
+                });
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+
+                // Update tab content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            }
+
+            bindToggle(toggleId, settingKey) {
+                const toggle = document.getElementById(toggleId);
+                toggle.addEventListener('click', () => {
+                    const isActive = toggle.classList.toggle('active');
+                    this.updateSetting(settingKey, isActive);
+                    if (settingKey === 'reducedMotion' && isActive) {
+                        document.body.classList.add('reduced-motion');
+                    } else if (settingKey === 'reducedMotion') {
+                        document.body.classList.remove('reduced-motion');
+                    }
+                });
+            }
+
+            loadSettings() {
+                // Load theme
+                document.getElementById('theme-select').value = this.settings.theme || 'light';
+                
+                // Load font size
+                const fontSize = parseInt(this.settings.fontSize) || 16;
+                document.getElementById('font-size-range').value = fontSize;
+                document.getElementById('font-size-value').textContent = fontSize + 'px';
+                this.applyFontSize(fontSize + 'px');
+
+                // Load toggles
+                this.loadToggle('animations-toggle', this.settings.animations !== false);
+                this.loadToggle('high-contrast-toggle', this.settings.highContrast === true);
+                this.loadToggle('reduced-motion-toggle', this.settings.reducedMotion === true);
+                this.loadToggle('sounds-toggle', this.settings.soundEnabled !== false);
+                this.loadToggle('local-storage-toggle', this.settings.localStorage !== false);
+                this.loadToggle('sharing-toggle', this.settings.sharing !== false);
+                this.loadToggle('remember-name-toggle', this.settings.rememberName !== false);
+                this.loadToggle('timer-toggle', this.settings.timerEnabled !== false);
+
+                // Load difficulty
+                document.getElementById('difficulty-select').value = this.settings.difficulty || 'medium';
+
+                // Apply theme
+                this.applyTheme(this.settings.theme);
+            }
+
+            loadToggle(toggleId, isActive) {
+                const toggle = document.getElementById(toggleId);
+                if (isActive) {
+                    toggle.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                }
+            }
+
+            updateSetting(key, value) {
+                this.settings[key] = value;
+            }
+
+            applyTheme(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                }
+            }
+
+            applyFontSize(size) {
+                document.documentElement.style.fontSize = size;
+            }
+
+            updateStats() {
+                const quizResults = StorageManager.getQuizResults();
+                const crosswordScores = StorageManager.getCrosswordScores();
+                const wordsearchScores = StorageManager.getWordSearchScores();
+                const acrosticEntries = StorageManager.getAcrosticEntries();
+                const storageInfo = StorageManager.getStorageInfo();
+
+                document.getElementById('stat-quizzes').textContent = quizResults.length;
+                document.getElementById('stat-crosswords').textContent = crosswordScores.length;
+                document.getElementById('stat-wordsearches').textContent = wordsearchScores.length;
+                document.getElementById('stat-acrostics').textContent = acrosticEntries.length;
+                document.getElementById('stat-storage').textContent = storageInfo.totalSizeKB + ' KB';
+            }
+
+            exportData() {
+                try {
+                    const data = StorageManager.exportData();
+                    const blob = new Blob([data], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `educacao-sexual-backup-${new Date().toISOString().split('T')[0]}.json`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    URL.revokeObjectURL(url);
+                    
+                    window.app?.showNotification('Dados exportados com sucesso!', 'success');
+                } catch (error) {
+                    window.app?.showNotification('Erro ao exportar dados.', 'error');
+                }
+            }
+
+            importData(file) {
+                const resultDiv = document.getElementById('import-result');
+                
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const importedCount = StorageManager.importData(e.target.result);
+                        
+                        if (importedCount > 0) {
+                            resultDiv.className = 'import-result success';
+                            resultDiv.textContent = `${importedCount} tipos de dados importados com sucesso!`;
+                            this.updateStats();
+                        } else {
+                            resultDiv.className = 'import-result error';
+                            resultDiv.textContent = 'Nenhum dado válido encontrado no arquivo.';
+                        }
+                        
+                        resultDiv.style.display = 'block';
+                        
+                        setTimeout(() => {
+                            resultDiv.style.display = 'none';
+                        }, 5000);
+                    } catch (error) {
+                        resultDiv.className = 'import-result error';
+                        resultDiv.textContent = 'Erro ao importar dados. Verifique o formato do arquivo.';
+                        resultDiv.style.display = 'block';
+                    }
+                };
+                
+                reader.readAsText(file);
+            }
+
+            clearProgress() {
+                if (confirm('Tem certeza que deseja limpar todo o progresso dos jogos? Esta ação não pode ser desfeita.')) {
+                    StorageManager.removeItem(StorageManager.KEYS.USER_PROGRESS);
+                    this.updateStats();
+                    window.app?.showNotification('Progresso limpo com sucesso.', 'success');
+                }
+            }
+
+            resetSettings() {
+                if (confirm('Tem certeza que deseja restaurar as configurações padrão?')) {
+                    StorageManager.removeItem(StorageManager.KEYS.USER_SETTINGS);
+                    location.reload();
+                }
+            }
+
+            clearAllData() {
+                if (confirm('ATENÇÃO: Esta ação irá apagar TODOS os seus dados permanentemente. Tem certeza que deseja continuar?')) {
+                    const cleared = StorageManager.clearAllData();
+                    if (cleared > 0) {
+                        window.app?.showNotification(`${cleared} tipos de dados foram apagados.`, 'success');
+                        this.updateStats();
+                    }
+                }
+            }
+
+            saveSettings() {
+                StorageManager.saveSettings(this.settings);
+                window.app?.showNotification('Configurações salvas com sucesso!', 'success');
+            }
+
+            resetToDefaults() {
+                if (confirm('Restaurar configurações padrão?')) {
+                    this.settings = {
+                        theme: 'light',
+                        fontSize: '16px',
+                        animations: true,
+                        highContrast: false,
+                        reducedMotion: false,
+                        soundEnabled: true,
+                        localStorage: true,
+                        sharing: true,
+                        rememberName: true,
+                        timerEnabled: true,
+                        difficulty: 'medium'
+                    };
+                    this.loadSettings();
+                    window.app?.showNotification('Configurações restauradas aos padrões.', 'success');
+                }
+            }
+        }
+
+        // Initialize settings manager
+        document.addEventListener('DOMContentLoaded', () => {
+            window.settingsManager = new SettingsManager();
+        });
+    </script>
+</body>
+</html>

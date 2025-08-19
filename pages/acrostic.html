@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acróstico - Educação Sexual</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .acrostic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .acrostic-header {
+            background: linear-gradient(135deg, var(--accent-color), #059669);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .acrostic-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .acrostic-header p {
+            opacity: 0.9;
+            font-size: 1.125rem;
+        }
+
+        .acrostic-example {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .acrostic-example h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .example-acrostic,
+        .preview-acrostic {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .acrostic-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .acrostic-line.example-line {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .letter {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            min-width: 40px;
+            margin-right: 1rem;
+        }
+
+        .phrase {
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .acrostic-creator {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .acrostic-creator h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .player-info {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .player-info input {
+            flex: 1;
+        }
+
+        .acrostic-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .acrostic-input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .letter-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .acrostic-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .acrostic-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .input-feedback {
+            min-height: 1.25rem;
+            font-size: 0.875rem;
+            margin-left: 50px;
+        }
+
+        .input-feedback.success {
+            color: var(--accent-color);
+        }
+
+        .input-feedback.error {
+            color: #ef4444;
+        }
+
+        .input-feedback.warning {
+            color: var(--secondary-color);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .acrostic-preview {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+            border: 2px solid var(--accent-color);
+        }
+
+        .acrostic-preview h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .preview-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .preview-header h4 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-header p {
+            color: var(--text-secondary);
+        }
+
+        .preview-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .acrostic-ranking {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .acrostic-ranking h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .ranking-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .ranking-list {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .ranking-item {
+            display: flex;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .ranking-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .ranking-position {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ranking-content {
+            flex: 1;
+            margin-left: 1rem;
+        }
+
+        .ranking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .ranking-header h4 {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .ranking-stats {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .ranking-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .ranking-stats i {
+            color: var(--primary-color);
+        }
+
+        .ranking-acrostic {
+            margin-bottom: 1rem;
+        }
+
+        .acrostic-word {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .acrostic-preview-short {
+            background: var(--surface-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+        }
+
+        .mini-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .mini-letter {
+            font-weight: 600;
+            color: var(--accent-color);
+            min-width: 25px;
+            margin-right: 0.5rem;
+        }
+
+        .mini-phrase {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .more-lines {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 0.875rem;
+        }
+
+        .ranking-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .vote-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .empty-ranking {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-ranking i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .acrostic-tips {
+            background: var(--background-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--border-color);
+        }
+
+        .acrostic-tips h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .acrostic-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .acrostic-tips li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .acrostic-tips li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+
+        .acrostic-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .modal-header h3 {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            color: var(--text-secondary);
+        }
+
+        .full-acrostic {
+            margin-bottom: 2rem;
+        }
+
+        .acrostic-word-display {
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-line {
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+        }
+
+        .acrostic-meta {
+            background: var(--background-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-top: 3px solid var(--accent-color);
+        }
+
+        .acrostic-meta p {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .my-acrostics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .my-acrostics-header h4 {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .my-acrostic {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .acrostic-container {
+                padding: 1rem;
+            }
+
+            .acrostic-header {
+                padding: 1.5rem;
+            }
+
+            .acrostic-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .player-info {
+                flex-direction: column;
+            }
+
+            .acrostic-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .letter-label {
+                text-align: left;
+                margin-bottom: 0.5rem;
+            }
+
+            .input-feedback {
+                margin-left: 0;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .ranking-controls {
+                flex-direction: column;
+            }
+
+            .ranking-controls .btn {
+                width: 100%;
+            }
+
+            .ranking-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ranking-content {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .ranking-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .ranking-actions {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .preview-actions {
+                flex-direction: column;
+            }
+
+            .preview-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo.svg" alt="Logo">
+            </div>
+            <div class="nav-title">
+                <h1>Educação Sexual</h1>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                <li><a href="crossword.html"><i class="fas fa-puzzle-piece"></i> Cruzada</a></li>
+                <li><a href="acrostic.html" class="active"><i class="fas fa-pen"></i> Acróstico</a></li>
+                <li><a href="wordsearch.html"><i class="fas fa-search"></i> Caça Palavras</a></li>
+                <li><a href="charts.html"><i class="fas fa-chart-pie"></i> Gráfico</a></li>
+                <li><a href="references.html"><i class="fas fa-book"></i> Referência</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="acrostic-container">
+            <div class="acrostic-header">
+                <h2>Jogo do Acróstico - Educação Sexual</h2>
+                <p>Crie frases criativas e educativas para cada letra</p>
+            </div>
+
+            <div id="acrostic-container">
+                <!-- Acrostic game content will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/acrostic.js"></script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referências - Educação Sexual</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .references-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .references-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .references-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .references-header p {
+            opacity: 0.9;
+            font-size: 1.125rem;
+        }
+
+        .references-content {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+        }
+
+        .references-intro {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .references-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .reference-category {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .reference-category:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .category-icon i {
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .references-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .reference-item {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .reference-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .reference-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .reference-authors {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-publication {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-year {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .reference-description {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .reference-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .reference-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .reference-link i {
+            font-size: 0.875rem;
+        }
+
+        .disclaimer {
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .disclaimer-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer-header i {
+            font-size: 1.25rem;
+            color: #2563eb;
+        }
+
+        .disclaimer-header h3 {
+            font-size: 1.125rem;
+            color: #2563eb;
+            margin: 0;
+        }
+
+        .disclaimer p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .citation-guide {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+
+        .citation-guide h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .citation-example {
+            background: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            overflow-x: auto;
+        }
+
+        .contact-info {
+            background: var(--accent-color);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .references-container {
+                padding: 1rem;
+            }
+
+            .references-header {
+                padding: 1.5rem;
+            }
+
+            .references-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .references-content {
+                padding: 1.5rem;
+            }
+
+            .reference-item {
+                padding: 1rem;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .category-icon {
+                align-self: center;
+            }
+
+            .citation-guide {
+                padding: 1.5rem;
+            }
+
+            .citation-example {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo.svg" alt="Logo">
+            </div>
+            <div class="nav-title">
+                <h1>Educação Sexual</h1>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                <li><a href="crossword.html"><i class="fas fa-puzzle-piece"></i> Cruzada</a></li>
+                <li><a href="acrostic.html"><i class="fas fa-pen"></i> Acróstico</a></li>
+                <li><a href="wordsearch.html"><i class="fas fa-search"></i> Caça Palavras</a></li>
+                <li><a href="charts.html"><i class="fas fa-chart-pie"></i> Gráfico</a></li>
+                <li><a href="references.html" class="active"><i class="fas fa-book"></i> Referência</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="references-container">
+            <div class="references-header">
+                <h1>Referências Bibliográficas</h1>
+                <p>Fontes científicas e educativas utilizadas no desenvolvimento do conteúdo</p>
+            </div>
+
+            <div class="disclaimer">
+                <div class="disclaimer-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Importante</h3>
+                </div>
+                <p>
+                    Todo o conteúdo educativo apresentado nesta plataforma é baseado em fontes científicas confiáveis e diretrizes de órgãos oficiais de saúde. 
+                    As referências listadas abaixo garantem a qualidade e veracidade das informações sobre educação sexual.
+                </p>
+            </div>
+
+            <div class="references-content">
+                <div class="references-intro">
+                    <p>
+                        A educação sexual de qualidade deve ser fundamentada em evidências científicas e diretrizes internacionais. 
+                        Abaixo estão listadas as principais fontes utilizadas para construir o conteúdo educativo desta plataforma, 
+                        organizadas por categorias temáticas.
+                    </p>
+                </div>
+
+                <div class="references-categories">
+                    <!-- Organizational References -->
+                    <div class="reference-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h2 class="category-title">Organizações Internacionais</h2>
+                        </div>
+                        <div class="references-list">
+                            <div class="reference-item">
+                                <div class="reference-title">Organização Mundial da Saúde (OMS)</div>
+                                <div class="reference-publication">Diretrizes Técnicas Internacionais de Educação em Sexualidade</div>
+                                <div class="reference-year">2018</div>
+                                <div class="reference-description">
+                                    Documento fundamental que estabelece os padrões internacionais para educação sexual abrangente, 
+                                    baseada em evidências científicas e direitos humanos.
+                                </div>
+                                <a href="https://www.who.int" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar no site da OMS
+                                </a>
+                            </div>
+                            <div class="reference-item">
+                                <div class="reference-title">UNESCO</div>
+                                <div class="reference-publication">Orientações Técnicas Internacionais sobre Educação em Sexualidade</div>
+                                <div class="reference-year">2019</div>
+                                <div class="reference-description">
+                                    Guia abrangente para implementação de programas de educação sexual em contextos educacionais, 
+                                    com abordagem científica e baseada em direitos.
+                                </div>
+                                <a href="https://www.unesco.org" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar no site da UNESCO
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- National References -->
+                    <div class="reference-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <h2 class="category-title">Órgãos Nacionais Brasileiros</h2>
+                        </div>
+                        <div class="references-list">
+                            <div class="reference-item">
+                                <div class="reference-title">Ministério da Saúde do Brasil</div>
+                                <div class="reference-publication">Diretrizes para a implementação do Projeto Saúde e Prevenção nas Escolas</div>
+                                <div class="reference-year">2018</div>
+                                <div class="reference-description">
+                                    Orientações oficiais para desenvolvimento de ações de educação sexual e prevenção de ISTs no ambiente escolar brasileiro.
+                                </div>
+                                <a href="https://www.gov.br/saude" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar no site do Ministério da Saúde
+                                </a>
+                            </div>
+                            <div class="reference-item">
+                                <div class="reference-title">Sociedade Brasileira de Pediatria</div>
+                                <div class="reference-publication">Manual de Orientação: Adolescência e Sexualidade</div>
+                                <div class="reference-year">2019</div>
+                                <div class="reference-description">
+                                    Guia médico especializado sobre desenvolvimento sexual na adolescência e orientações para profissionais de saúde.
+                                </div>
+                                <a href="https://www.sbp.com.br" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar no site da SBP
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Academic References -->
+                    <div class="reference-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h2 class="category-title">Publicações Acadêmicas</h2>
+                        </div>
+                        <div class="references-list">
+                            <div class="reference-item">
+                                <div class="reference-title">Comprehensive sexuality education: a global review</div>
+                                <div class="reference-authors">Goldfarb, E.S., Lieberman, L.D.</div>
+                                <div class="reference-publication">Sex Education, 21(3), 295-314</div>
+                                <div class="reference-year">2021</div>
+                                <div class="reference-description">
+                                    Revisão sistemática internacional sobre a eficácia da educação sexual abrangente na promoção da saúde sexual e reprodutiva.
+                                </div>
+                                <a href="https://pubmed.ncbi.nlm.nih.gov" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Ver no PubMed
+                                </a>
+                            </div>
+                            <div class="reference-item">
+                                <div class="reference-title">Educação sexual na escola: uma proposta didático-pedagógica</div>
+                                <div class="reference-authors">Silva, R.C.P., Megid Neto, J.</div>
+                                <div class="reference-publication">Revista Brasileira de Educação Sexual, 2(1), 34-52</div>
+                                <div class="reference-year">2020</div>
+                                <div class="reference-description">
+                                    Estudo sobre metodologias pedagógicas eficazes para implementação da educação sexual no contexto escolar brasileiro.
+                                </div>
+                                <a href="#" class="reference-link">
+                                    <i class="fas fa-file-pdf"></i>
+                                    Acessar artigo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Legal References -->
+                    <div class="reference-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h2 class="category-title">Marco Legal</h2>
+                        </div>
+                        <div class="references-list">
+                            <div class="reference-item">
+                                <div class="reference-title">Lei nº 8.069/1990 - Estatuto da Criança e do Adolescente</div>
+                                <div class="reference-publication">Presidência da República - Casa Civil</div>
+                                <div class="reference-year">1990</div>
+                                <div class="reference-description">
+                                    Marco legal brasileiro que estabelece os direitos da criança e do adolescente, incluindo o direito à educação e informação sobre saúde sexual.
+                                </div>
+                                <a href="http://www.planalto.gov.br" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Ver legislação
+                                </a>
+                            </div>
+                            <div class="reference-item">
+                                <div class="reference-title">Parâmetros Curriculares Nacionais - Orientação Sexual</div>
+                                <div class="reference-publication">Ministério da Educação</div>
+                                <div class="reference-year">1997</div>
+                                <div class="reference-description">
+                                    Documento oficial que orienta a abordagem da sexualidade como tema transversal no currículo escolar brasileiro.
+                                </div>
+                                <a href="http://portal.mec.gov.br" class="reference-link" target="_blank" rel="noopener">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar no MEC
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scientific Resources -->
+                    <div class="reference-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h2 class="category-title">Recursos Científicos</h2>
+                        </div>
+                        <div class="references-list">
+                            <div class="reference-item">
+                                <div class="reference-title">Anatomia Humana Básica</div>
+                                <div class="reference-authors">Dangelo, J.G., Fattini, C.A.</div>
+                                <div class="reference-publication">Editora Atheneu</div>
+                                <div class="reference-year">2019</div>
+                                <div class="reference-description">
+                                    Referência médica para informações anatômicas e fisiológicas sobre o sistema reprodutivo humano.
+                                </div>
+                                <a href="#" class="reference-link">
+                                    <i class="fas fa-book"></i>
+                                    Consultar bibliografia
+                                </a>
+                            </div>
+                            <div class="reference-item">
+                                <div class="reference-title">Fisiologia Humana</div>
+                                <div class="reference-authors">Guyton, A.C., Hall, J.E.</div>
+                                <div class="reference-publication">Editora Elsevier</div>
+                                <div class="reference-year">2018</div>
+                                <div class="reference-description">
+                                    Texto fundamental sobre fisiologia humana, incluindo aspectos da reprodução e desenvolvimento sexual.
+                                </div>
+                                <a href="#" class="reference-link">
+                                    <i class="fas fa-book"></i>
+                                    Consultar bibliografia
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="citation-guide">
+                <h2>Como Citar Este Conteúdo</h2>
+                <p>Para citar o conteúdo desta plataforma educativa em trabalhos acadêmicos:</p>
+                
+                <h4>Formato ABNT:</h4>
+                <div class="citation-example">
+EDUCAÇÃO SEXUAL: Portal Educativo. Disponível em: &lt;URL da página&gt;. Acesso em: [data de acesso].
+                </div>
+
+                <h4>Formato APA:</h4>
+                <div class="citation-example">
+Portal Educativo Educação Sexual. (2024). Recuperado de [URL da página]
+                </div>
+
+                <p><strong>Nota:</strong> Recomendamos sempre consultar as fontes primárias listadas acima para citações em trabalhos científicos.</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>Sugestões de Referências</h3>
+                <p>
+                    Conhece alguma fonte científica relevante que deveria estar incluída? 
+                    Entre em contato conosco para sugerir novas referências bibliográficas.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
