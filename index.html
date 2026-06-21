@@ -4,17 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educação Sexual - Portal Educativo</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/main.css?v=3">
+    <link rel="stylesheet" href="styles/responsive.css?v=3">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Logos Section */
+        .logos-section {
+            background: var(--surface-color);
+            padding: 1.25rem 0;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .logos-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+        .logos-bar img {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Carousel slide link button */
+        .slide-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: 2px solid rgba(255,255,255,0.6);
+        }
+        .slide-link-btn:hover {
+            background: rgba(255,255,255,0.4);
+            color: white;
+        }
+
+        /* Saiba Mais link on cards */
+        .saiba-mais-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+        }
+        .saiba-mais-btn:hover {
+            border-bottom-color: var(--primary-color);
+            gap: 0.75rem;
+        }
+
+        /* HPV card header — destaque em vermelho */
+        .card-icon.hpv-icon {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="assets/logo.jpg" alt="Logo">
+                <img src="assets/logo-app.jpeg" alt="Logo">
             </div>
             <div class="nav-title">
                 <h1>Educação Sexual</h1>
@@ -43,6 +109,16 @@
 
     <!-- Main Content -->
     <main class="main-content">
+
+        <!-- Institution Logos -->
+        <section class="logos-section">
+            <div class="logos-bar">
+                <img src="assets/logo-profbio.jpeg" alt="PROFBIO - Mestrado Profissional em Ensino de Biologia">
+                <img src="assets/logo-ufpb.jpeg" alt="Universidade Federal da Paraíba">
+                <img src="assets/logo-capes.png" alt="CAPES">
+            </div>
+        </section>
+
         <!-- Hero Section with Carousel -->
         <section class="hero">
             <div class="carousel-container">
@@ -51,6 +127,9 @@
                         <div class="slide-content">
                             <h2>Educação Sexual: Conhecimento é Poder</h2>
                             <p>Informações científicas e educativas sobre sexualidade humana</p>
+                            <a href="pages/slide-conhecimento.html" class="slide-link-btn">
+                                <i class="fas fa-arrow-right"></i> Saiba mais
+                            </a>
                         </div>
                         <div class="slide-image">
                             <i class="fas fa-graduation-cap"></i>
@@ -60,6 +139,9 @@
                         <div class="slide-content">
                             <h2>Saúde e Bem-estar</h2>
                             <p>Promovendo a saúde sexual e reprodutiva através da educação</p>
+                            <a href="pages/slide-saude.html" class="slide-link-btn">
+                                <i class="fas fa-arrow-right"></i> Saiba mais
+                            </a>
                         </div>
                         <div class="slide-image">
                             <i class="fas fa-heart"></i>
@@ -69,6 +151,9 @@
                         <div class="slide-content">
                             <h2>Prevenção e Cuidado</h2>
                             <p>Informações sobre prevenção e cuidados com a saúde sexual</p>
+                            <a href="pages/slide-prevencao.html" class="slide-link-btn">
+                                <i class="fas fa-arrow-right"></i> Saiba mais
+                            </a>
                         </div>
                         <div class="slide-image">
                             <i class="fas fa-shield-alt"></i>
@@ -87,25 +172,30 @@
         <section class="content-section">
             <div class="container">
                 <h2 class="section-title">Documentação sobre Educação Sexual</h2>
-                
+
                 <div class="content-grid">
+                    <!-- Card 1: Desenvolvimento Sexual -->
                     <article class="content-card">
                         <div class="card-icon">
                             <i class="fas fa-user-md"></i>
                         </div>
                         <h3>Desenvolvimento Sexual</h3>
-                        <p>A sexualidade é um aspecto natural e fundamental da experiência humana, envolvendo aspectos biológicos, psicológicos e sociais. O desenvolvimento sexual ocorre ao longo de toda a vida, desde a infância até a idade adulta, sendo importante compreender as diferentes fases e suas características.</p>
+                        <p>A sexualidade é um aspecto natural e fundamental da experiência humana, envolvendo aspectos biológicos, psicológicos e sociais. O desenvolvimento sexual ocorre ao longo de toda a vida, desde a infância até a idade adulta.</p>
                         <div class="content-details">
                             <h4>Fases do Desenvolvimento:</h4>
                             <ul>
                                 <li><strong>Infância:</strong> Descoberta do próprio corpo e curiosidade natural</li>
-                                <li><strong>Adolescência:</strong> Mudanças hormonais e desenvolvimento da identidade sexual</li>
+                                <li><strong>Adolescência:</strong> Mudanças hormonais e identidade sexual</li>
                                 <li><strong>Juventude:</strong> Estabelecimento de relacionamentos íntimos</li>
                                 <li><strong>Idade Adulta:</strong> Maturidade sexual e responsabilidade</li>
                             </ul>
                         </div>
+                        <a href="pages/detail-desenvolvimento.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
                     </article>
 
+                    <!-- Card 2: Anatomia e Fisiologia -->
                     <article class="content-card">
                         <div class="card-icon">
                             <i class="fas fa-dna"></i>
@@ -126,19 +216,23 @@
                                 <li>Vagina: canal do parto e órgão de cópula</li>
                             </ul>
                         </div>
+                        <a href="pages/detail-anatomia.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
                     </article>
 
+                    <!-- Card 3: Prevenção e Saúde -->
                     <article class="content-card">
                         <div class="card-icon">
                             <i class="fas fa-shield-virus"></i>
                         </div>
                         <h3>Prevenção e Saúde</h3>
-                        <p>A prevenção é fundamental na educação sexual. Conhecer métodos contraceptivos, prevenção de ISTs (Infecções Sexualmente Transmissíveis) e práticas de sexo seguro são essenciais para uma vida sexual saudável.</p>
+                        <p>A prevenção é fundamental na educação sexual. Conhecer métodos contraceptivos, prevenção de ISTs e práticas de sexo seguro são essenciais para uma vida sexual saudável.</p>
                         <div class="content-details">
                             <h4>Métodos Contraceptivos:</h4>
                             <ul>
                                 <li><strong>Preservativos:</strong> Proteção dupla contra gravidez e ISTs</li>
-                                <li><strong>Pílula Anticoncepcional:</strong> Controle hormonal da ovulação</li>
+                                <li><strong>Pílula:</strong> Controle hormonal da ovulação</li>
                                 <li><strong>DIU:</strong> Dispositivo intrauterino de longa duração</li>
                                 <li><strong>Implante:</strong> Liberação hormonal subcutânea</li>
                             </ul>
@@ -147,11 +241,14 @@
                                 <li>Uso consistente de preservativos</li>
                                 <li>Testes regulares de saúde</li>
                                 <li>Vacinação (HPV, Hepatite B)</li>
-                                <li>Comunicação aberta com parceiros</li>
                             </ul>
                         </div>
+                        <a href="pages/detail-prevencao.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
                     </article>
 
+                    <!-- Card 4: Relacionamentos Saudáveis -->
                     <article class="content-card">
                         <div class="card-icon">
                             <i class="fas fa-heart"></i>
@@ -159,16 +256,20 @@
                         <h3>Relacionamentos Saudáveis</h3>
                         <p>Relacionamentos saudáveis são baseados em respeito mútuo, comunicação efetiva e consentimento. É importante compreender os aspectos emocionais da sexualidade e como construir vínculos afetivos saudáveis.</p>
                         <div class="content-details">
-                            <h4>Características de Relacionamentos Saudáveis:</h4>
+                            <h4>Características Fundamentais:</h4>
                             <ul>
                                 <li><strong>Respeito:</strong> Valorização das diferenças e limites</li>
-                                <li><strong>Comunicação:</strong> Diálogo aberto sobre sentimentos e necessidades</li>
+                                <li><strong>Comunicação:</strong> Diálogo aberto sobre sentimentos</li>
                                 <li><strong>Consentimento:</strong> Acordo mútuo e consciente</li>
                                 <li><strong>Confiança:</strong> Base sólida para intimidade</li>
                             </ul>
                         </div>
+                        <a href="pages/detail-relacionamentos.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
                     </article>
 
+                    <!-- Card 5: Direitos Sexuais e Reprodutivos -->
                     <article class="content-card">
                         <div class="card-icon">
                             <i class="fas fa-balance-scale"></i>
@@ -185,23 +286,52 @@
                                 <li>Direito à privacidade e confidencialidade</li>
                             </ul>
                         </div>
+                        <a href="pages/detail-direitos.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
                     </article>
 
+                    <!-- Card 6: Diversidade e Inclusão -->
                     <article class="content-card">
                         <div class="card-icon">
                             <i class="fas fa-users"></i>
                         </div>
                         <h3>Diversidade e Inclusão</h3>
-                        <p>A educação sexual deve ser inclusiva e respeitar a diversidade de orientações sexuais, identidades de gênero e expressões da sexualidade humana. O respeito à diversidade é fundamental para uma sociedade mais justa e igualitária.</p>
+                        <p>A educação sexual deve ser inclusiva e respeitar a diversidade de orientações sexuais, identidades de gênero e expressões da sexualidade humana. O respeito à diversidade é fundamental para uma sociedade mais justa.</p>
                         <div class="content-details">
                             <h4>Aspectos da Diversidade:</h4>
                             <ul>
-                                <li><strong>Orientação Sexual:</strong> Heterossexualidade, homossexualidade, bissexualidade</li>
+                                <li><strong>Orientação Sexual:</strong> Hetero, homo, bissexualidade</li>
                                 <li><strong>Identidade de Gênero:</strong> Cisgeneridade, transgeneridade</li>
                                 <li><strong>Expressão de Gênero:</strong> Formas de expressar a identidade</li>
-                                <li><strong>Intersexualidade:</strong> Variações no desenvolvimento sexual</li>
+                                <li><strong>Intersexualidade:</strong> Variações no desenvolvimento</li>
                             </ul>
                         </div>
+                        <a href="pages/detail-diversidade.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 7: Câncer de Orofaringe e HPV (NOVO) -->
+                    <article class="content-card">
+                        <div class="card-icon hpv-icon">
+                            <i class="fas fa-virus"></i>
+                        </div>
+                        <h3>Câncer de Orofaringe e HPV</h3>
+                        <p>O HPV (Papilomavírus Humano) pode ser transmitido pelo sexo oral e está fortemente associado ao câncer de orofaringe. Os tipos HPV-16 e HPV-18 são os principais responsáveis por esse tipo de câncer na região da garganta, amígdalas e base da língua.</p>
+                        <div class="content-details">
+                            <h4>Pontos Importantes:</h4>
+                            <ul>
+                                <li><strong>Transmissão:</strong> Contato com mucosas infectadas pelo HPV no sexo oral</li>
+                                <li><strong>Sintomas:</strong> Nódulos no pescoço, dor ao engolir, rouquidão</li>
+                                <li><strong>Prevenção:</strong> Vacina HPV e uso de preservativo</li>
+                                <li><strong>Vacina:</strong> Gratuita pelo SUS para jovens de 9 a 14 anos</li>
+                                <li><strong>Diagnóstico:</strong> Avaliação médica precoce é essencial</li>
+                            </ul>
+                        </div>
+                        <a href="pages/detail-hpv-orofaringe.html" class="saiba-mais-btn">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
                     </article>
                 </div>
             </div>
@@ -217,7 +347,7 @@
                             <i class="fas fa-question-circle"></i>
                         </div>
                         <h3>Quiz Educativo</h3>
-                        <p>Teste seus conhecimentos com 11 perguntas sobre educação sexual</p>
+                        <p>Teste seus conhecimentos com perguntas sobre educação sexual — 10 perguntas aleatórias a cada rodada!</p>
                         <a href="pages/quiz.html" class="game-link">Jogar Agora</a>
                     </div>
                     <div class="game-card">
@@ -266,13 +396,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Paulo Educação Sexual. Todos os direitos reservados.</p>
+                <p>&copy; 2024 Educação Sexual Portal. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/storage.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/storage.js?v=2"></script>
+    <script src="js/carousel.js?v=2"></script>
+    <script src="js/main.js?v=2"></script>
 </body>
 </html>
