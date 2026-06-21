@@ -1,14 +1,14 @@
 :root {
-    --primary-color: #15f00d;
-    --primary-dark: #4f46e5;
-    --secondary-color: #f59e0b;
-    --accent-color: #10b981;
-    --background-color: #0ffa36ea;
+    --primary-color: #16a34a;
+    --primary-dark: #15803d;
+    --secondary-color: #0d9488;
+    --accent-color: #4ade80;
+    --background-color: #f0fdf4;
     --surface-color: #ffffff;
     --text-primary: #1f2937;
     --text-secondary: #6b7280;
     --text-light: #9ca3af;
-    --border-color: #e5e7eb;
+    --border-color: #d1fae5;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -52,8 +52,10 @@ body {
 }
 
 .nav-logo img {
-    height: 40px;
-    width: auto;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 12px;
 }
 
 .nav-title {
@@ -71,9 +73,19 @@ body {
 .nav-toggle {
     display: none;
     cursor: pointer;
-    padding: 0.5rem;
-    font-size: 1.25rem;
-    color: var(--text-primary);
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition);
+}
+.nav-toggle:hover {
+    background: var(--primary-dark);
 }
 
 /* Sidebar */
@@ -113,7 +125,7 @@ body {
 
 .sidebar-menu a:hover,
 .sidebar-menu a.active {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(22, 163, 74, 0.1);
     color: var(--primary-color);
     border-left-color: var(--primary-color);
 }
@@ -545,7 +557,7 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
 
 /* Alert and Message Styles */
